@@ -1,0 +1,111 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+body{
+    background-color: #222;
+}
+.card{
+
+    width: 90%;
+    
+    max-width: 470px;
+    background: linear-gradient(135deg, #00feba, #5b548a);
+    color: #ffF;
+     margin: 100px auto 0px;
+    border-radius: 2px;
+    
+    padding: 40px 35px;
+    
+    text-align: center;
+}
+.search{
+ width: 100%;
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+}
+.search input{
+    border:0px;
+    outline: none;
+    background-color: #ebfffc;
+    color:#555;
+    font-size: 16px;
+    height: 40px;
+    width: 100%;
+    padding: 0 10px;
+    border-radius: 30px;
+    flex:1;
+    margin-right: 16px;
+
+}
+.search button{
+    cursor: pointer;
+    background: url('../images/icon_search.png') no-repeat;
+    width: 40px;
+    height: 40px;
+    background-position: center;
+    background-size: contain;
+    border: 0px;
+    outline: none;
+}
+.weather-icon{
+    width: 50px;
+    height: 50px;
+    vertical-align: middle;
+    margin-left: -5px;
+    margin-top: 30px;
+
+}
+.weather-icon img{
+    width: 100%;
+    height: 100%;
+
+}
+.weather h1{
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    line-height: normal;
+    font-style: italic;
+    font-weight: bold;
+    letter-spacing: 0;
+    text-rendering: optimizeLegibility;
+    font-variant: small-caps;
+    font-stretch: normal;
+    font-size: 28px;
+    position: relative;
+    top:-7px;
+
+}
+.weather h2{
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    line-height: normal;
+    font-style: italic;
+    font-weight: bold;
+    letter-spacing: 0;
+    text-rendering: optimizeLegibility;
+    font-variant: small-caps;
+    font-stretch: normal;
+    font-size: 19px;
+    color:#fff;
+    opacity: .7;
+    padding-bottom: 10px;
+
+
+}
+.details{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    border-radius: 6px;
+    box-shadow: 0 0 10px rgba(0,0,0,.1);
+    padding: 10px;
+    max-width: 800px;
+    margin: auto;
+    overflow: hidden;
+
+}
+.humidity,.wind{
+    font-size: 28px;
+}
