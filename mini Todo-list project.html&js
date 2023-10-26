@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="new.css">
+    <script src="new.js" defer></script>
+    <title>Professional Blog</title>
+</head>
+<body>
+  <div class="container">
+     <div class="todo-app">
+        <h2>To-Do List <img src="icon.png"></h2>
+        <form class="inputbox">
+            <input type="text" id="myInput" placeholder="Search for blogs..">
+            <input type="submit" class="submit">
+        </form>
+         <ul class="list">
+            <!-- <li>
+            <span>do this</span>
+            <div class="btns">
+                <button class="todo-btn remove"> Remove</button>
+                <button class="todo-btn done"> Done</button>
+            </div>`
+            </li> -->
+       
+         
+         </ul>
+     </div>
+     
+  </div>
+
+    <script>
+
+const formInput = document.querySelector('.inputbox');
+const inputBox = document.querySelector('#myInput');
+console.log(inputBox)
+const list = document.querySelector('.list');
+
+formInput.addEventListener('submit',(e)=>{
+    e.preventDefault();
+    const todoinput = inputBox.value;
+    const li= document.createElement('li');
+    const newli=` 
+    <span>${todoinput}</span>
+    <div class="btns">
+        <button class="todo-btn remove"> Remove</button>
+        <button class="todo-btn done"> Done</button>
+    </div>`;
+    li.innerHTML=newli;
+    list.appendChild(li);
+    inputBox.value="";
+
+})
+list.addEventListener('click',(e)=>{
+    if(e.target.classList.contains('done')){
+        const spn = e.target.parentNode.previousElementSibling;
+        spn.style.textDecoration="line-through "
+    }else if(e.target.classList.contains('remove')){
+        let parent = e.target.parentNode.parentNode;
+        parent.remove()
+    }
+        });
+        
+
+    </script>
+                
+
+</body>
+</html>
