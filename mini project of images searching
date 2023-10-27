@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="new.js" defer></script>
+    <link rel="stylesheet" href="new.css">
+</head>
+<body>
+    <h1>Image search app</h1>
+    <form action="">
+        <input type="text" id="searchInput" placeholder="Search...">
+        <button id="search-button">search</button>
+    </form>
+
+    <div class="search-results">
+        <div class="search-result">
+            <img src="https://images.unsplash.com/photo-1695849118500-c8034bc651b6?auto=format&fit=crop&q=80&w=1887&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="nature image">
+            <a href="https://unsplash.com/photos/a-black-church-with-a-steeple-on-a-cloudy-day-HyEje7eyuFA" target="_blank">Nature Image</a>
+        </div>
+        <div class="search-result">
+            <img src="https://images.unsplash.com/photo-1695849118500-c8034bc651b6?auto=format&fit=crop&q=80&w=1887&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="nature image">
+            <a href="https://unsplash.com/photos/a-black-church-with-a-steeple-on-a-cloudy-day-HyEje7eyuFA" target="_blank">Nature Image</a>
+        </div>
+        <div class="search-result">
+            <img src="https://images.unsplash.com/photo-1695849118500-c8034bc651b6?auto=format&fit=crop&q=80&w=1887&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="nature image">
+            <a href="https://unsplash.com/photos/a-black-church-with-a-steeple-on-a-cloudy-day-HyEje7eyuFA" target="_blank">Nature Image</a>
+        </div>
+    </div>
+    <button id="btn">Show More</button>
+
+
+    <script>
+
+        
+const accessKey="jdjXFUeJ9SisivdtbKk9rRPssWu83QQr3dteMKP5vZo";
+const form = document.querySelector('form');
+const inputBox= document.querySelector('#searchInput');
+const searchResults=document.querySelector('.search-results');
+const btn = document.querySelector('#btn');
+let page=1;
+let inputData="";
+async function getdata(){
+    inputData = inputBox.value;
+    const url=`https://api.unsplash.com/search/photos?page=${page}&query=${inputData}&client_id=${accessKey}`;
+    let response= await fetch(url);
+    var data= await response.json();
+    const results = data.results;
+    if(page==1){
+        searchResults.innerHTML='';
+
+    }
+    results.map((result)=>{
+        let div = document.createElement("div");
+        div.classList.add("search-result");
+        const image=document.createElement('img')
+        image.src= result.urls.small;
+        image.alt=result.alt_description;
+        const imageLink=document.createElement('a')
+        imageLink.target="_blank"
+        imageLink.textContent=result.alt_description
+        div.appendChild(image)
+        div.appendChild(imageLink);
+        searchResults.appendChild(div);
+
+    });
+    page++
+    if(page>1){
+        btn.style.display="block"
+    }
+
+    }
+    form.addEventListener("submit",(e)=>{
+        e.preventDefault()
+        console.log('hello')
+        getdata()
+    })
+    btn.addEventListener("click",()=>{
+        getdata()
+    })
+
+    </script>
+  
+</body>
+</html>
