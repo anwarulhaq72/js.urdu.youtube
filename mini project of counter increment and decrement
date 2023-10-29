@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="new.js" defer></script>
+    <link rel="stylesheet" href="new.css">
+    <style>
+
+.container{
+    width: 100%;
+    text-align: center;
+}
+.btn{
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: #3498db;
+    color: white;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    font-weight: bold;
+    letter-spacing: 1px;
+    user-select: none;
+}
+    </style>
+</head>
+<body>
+  
+    <div class="container">
+        <h2 id="innertext">0</h2>
+        <button class="btn btn1">lower</button>
+        <button class="btn btn2">upper</button>
+    </div>
+
+<script>
+
+const buttons = document.querySelectorAll('.btn');
+let counter=0;
+console.log(typeof counter)
+buttons.forEach(button => {
+  button.addEventListener('click', ()=>{
+    if(button.classList.contains('btn1')){
+      counter--;
+    }
+    else if(button.classList.contains('btn2')){
+      counter++;
+    }
+    const innerText=document.querySelector('#innertext')
+    innerText.innerHTML=`${counter}`;
+   })
+  })
+
+</script>
+
+  
+</body>
+</html>
