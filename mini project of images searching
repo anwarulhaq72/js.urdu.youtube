@@ -185,7 +185,7 @@ async function getdata(){
     }
     form.addEventListener("submit",(e)=>{
         e.preventDefault()
-        console.log('hello')
+        page=1;
         getdata()
     })
     btn.addEventListener("click",()=>{
