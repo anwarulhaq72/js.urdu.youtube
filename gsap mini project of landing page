@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" integrity="sha512-16esztaSRplJROstbIIdwX3N97V1+pZvV33ABoG1H2OyTttBxEGkTsoIVsiP1iaTtM8b3+hu2kB6pQ4Clr5yug==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="new.js" defer></script>
+    <link rel="stylesheet" href="new.css">
+<style>
+body,html{
+    width: 100vw;
+    height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0;
+    margin: 0;
+
+}
+.main{
+    width: 100%;
+    height: 100vh;
+    background-color: black;
+    color: white;
+    text-align: center;
+    text-transform: uppercase;
+    position: relative;
+}
+span{
+    background-color: brown;
+    display: inline-block;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 3px;
+    font-size: 20px;
+    text-align: center;
+}
+.nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    color: white;
+    height: 30px;
+    width: 100%;
+    /* background-color: red; */
+    margin-top: 20px;
+
+}
+.tags{
+    display: flex;
+    list-style: none;
+    gap: 30px;
+    text-align: center;
+    padding-left: 40px;
+    margin-left: 70px;
+}
+.search{
+    padding-right: 50px;
+}
+.logo{
+    padding-left: 50px;
+}
+.btn{
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-color: #f4a679;
+    color: white;
+    padding: 8px 15px;
+    transition: all 0.3s ease-in-out;
+    font-size: 14px;
+    line-height: 1;
+    letter-spacing: 0.5px;
+    border-radius: 50px;
+
+}
+.input{
+
+    padding: 10px;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    width: 200px;
+    box-shadow: 0 0 10px rgba(0,0,0,.1);
+
+}
+.h1tags h1{
+    position: relative;
+    margin-top: 50px;
+    font-size: 80px;
+    z-index: 1;
+    text-align: center;
+
+
+}
+.image{
+    position: absolute;
+    top: 80px;
+    left: 50px;
+    width: 200px;
+    height: 200px;
+    border-radius: 20px;
+}
+.image-2{
+    position: absolute;
+    bottom: 50px;
+    right: 100px;
+    width: 200px;
+    height: 200px;
+    border-radius: 20px;
+
+}
+</style>
+</head>
+<body onload="anim()">
+   <div class="main">
+      <div class="nav">
+         <div class="logo"><h2>Hello</h2></div>
+         <div class="tags">
+            <p>home</p>
+            <p>about</p>
+            <p>contacts</p>
+         </div>
+         <div class="search">
+            <input type="text" class="input" placeholder="Search...">
+            <button class="btn">Search</button>
+         </div>
+      </div>
+
+     <div class="h1tags">
+      <h1>everything</h1>
+      <h1>to <span>book now</span>sell</h1>
+      <h1>anything</h1>
+     </div>
+            <img src="https://plus.unsplash.com/premium_photo-1698846878442-4f0b4166fb85?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw3NHx8fGVufDB8fHx8fA%3D%3D" class="image" alt="" srcset="">
+            <img src="https://images.unsplash.com/photo-1698929901707-ce2b943713f1?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5OXx8fGVufDB8fHx8fA%3D%3D" class="image-2" alt="" srcset="">
+
+   </div>
+  
+    
+    <script>
+     function anim(){
+
+
+var tl =gsap.timeline()
+tl.from(".logo",{
+  duration: 1,
+  y:100,
+})
+tl.from(".h1tags",{
+  duration: 1,
+  opacity:0,
+  stagger:{
+    amount: .5
+    },
+    y:100
+})
+tl.from(".image",{
+  duration: 2,
+  opacity:0,
+  y:700,
+  scale:0,
+  rotate:360,
+  stagger:{
+    amount: .5
+  }
+ 
+  })
+  tl.from(".image-2",{
+    duration: 2,
+    opacity:0,
+    scale:0,
+    x:700,
+    stagger:{
+      amount: .5
+    }
+    })
+  }
+
+    </script>
+
+
+  
+</body>
+</html>
