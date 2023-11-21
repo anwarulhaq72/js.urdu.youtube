@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <link rel="stylesheet" href="new.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" integrity="sha512-16esztaSRplJROstbIIdwX3N97V1+pZvV33ABoG1H2OyTttBxEGkTsoIVsiP1iaTtM8b3+hu2kB6pQ4Clr5yug==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" integrity="sha512-Ic9xkERjyZ1xgJ5svx3y0u3xrvfT/uPkV99LBwe68xjy/mGtO+4eURHZBW2xW4SZbFrF1Tf090XqB+EVgXnVjw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+   <script src="new.js" defer></script>
+   <style>
+   *{
+    padding: 0;
+    margin: 0;
+}
+.header{
+    width: 100vw;
+   height: 300px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    justify-content: center;
+  
+}
+.container{
+    width: 100vw;
+    height: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   border: 2px solid black;
+    background-color: white;
+    margin-top: 50px;
+    
+}
+.child{
+    width: 200px;
+    height: 100px;
+    border: 2px solid black;
+    background-color: white;
+}
+   </style>
+</head>
+<body>
+<div class="header">
+   <button class="again">Again</button>
+   <h1>Guess my number</h1>
+   <div class="number">?</div>
+   <input type="text" class="myinput">
+   <button class="check">check</button>
+   <p class="counter">start guessing</p>
+   <p class="score">score:20</p>
+   <p>high score : <span class="highscore"></span></p>
+</div>
+
+   <div class="container">
+      <div class="child"></div>
+   </div>
+
+   <script>
+        
+let secretNumber=Math.floor(Math.random()*20)+1;
+let highScore=0; 
+ let score = 20;
+ const funcForCounter=function(message){
+  document.querySelector('.counter').textContent = message;
+ }
+document.querySelector('.check').addEventListener('click',function(){
+  const guess = Number(document.querySelector('.myinput').value);
+  
+  if (!guess){
+    document.querySelector('.counter').textContent='please enter a number';
+  }else if(guess===secretNumber){
+
+    // we will use here function
+    funcForCounter('you win the game')
+    // document.querySelector('.counter').textContent='you win the game';
+    document.querySelector('.number').textContent=secretNumber;
+    document.querySelector('body').style.backgroundColor='green';
+    if(score > highScore){
+      highScore = score;
+      document.querySelector('.highscore').textContent=`${highScore}`;
+    }
+  }else if(guess !== secretNumber){
+    if(score>0){
+      // document.querySelector('.counter').textContent=guess>secretNumber?'two high' : 'two low';
+
+     // insted of uper code we used function to not repeat the code
+      funcForCounter(guess>secretNumber?'two high' : 'two low')
+
+      score--;
+      document.querySelector('.score').textContent=score;
+    }else{
+      funcForCounter('You lose')
+      // document.querySelector('.counter').textContent="you lose";
+    }
+    }
+    
+  
+  // }else if(guess<secretNumber){
+  //   if(score>0){
+  //     document.querySelector('.counter').textContent=`your guess is too low`;
+  //     score--;
+  //     document.querySelector('.score').textContent=score;
+  //   }else{
+  //     document.querySelector('.counter').textContent="you lose";
+  //   }
+  // }
+})
+
+document.querySelector('.again').addEventListener('click',()=>{
+   score = 20;
+  document.querySelector('.score').textContent=score;
+  document.querySelector('.counter').textContent='start guessing...';
+  document.querySelector('.number').textContent='?';
+  document.querySelector('body').style.backgroundColor='white';
+  secretNumber=Math.floor(Math.random()*20)+1;
+  document.querySelector('.myinput').value='';
+  });
+
+   </script>
+
+</body>
+</html>
