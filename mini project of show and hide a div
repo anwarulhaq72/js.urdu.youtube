@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <link rel="stylesheet" href="new.css">
+   <script src="new.js" defer></script>
+
+<style>
+*{
+    padding: 0;
+    margin: 0;
+}
+.model{
+    width: 70%;
+    height: 50%;
+    background-color: #867575;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, .3) 0px 4px 8px 0px;
+    transition: ease-out.2s;
+   
+    
+}
+.hidden{
+    display: none;
+}
+.show-modal{
+  display: inline-block;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 20px;
+    font-size: 2em;
+    color: white;
+    background-color: #867575;
+    transition: all .3s ease-in-out;
+    border-radius: 10px;
+}
+.btn{
+    display: inline-block;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 2em;
+    color: white;
+    background-color: #e17e7e;
+    transition: all .3s ease-in-out;
+    border-radius: 10px; 
+}
+</style>
+</head>
+<body>
+<button class="show-modal">button1</button>
+<button class="show-modal">button2</button>
+<button class="show-modal">button3</button>
+<div class="model hidden">
+   <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellendus adipisci, asperiores esse fugit ipsa harum alias. Magni odit porro cum? Neque odit, dolor ut, quia, earum deserunt iusto nemo quis quidem repellendus culpa! Fugit eaque dicta nihil, repudiandae quaerat eligendi.</p>
+   <button class="btn" >click me To close </button>
+</div>
+
+<script>
+const showModel = document.querySelectorAll('.show-modal');
+const modal = document.querySelector('.model');
+const btn = document.querySelector('.btn');
+showModel.forEach((items)=>{
+  items.addEventListener('click',()=>{
+    modal.classList.remove('hidden')
+  
+})
+});
+btn.addEventListener('click',()=>{
+  modal.classList.add('hidden')
+})
+</script>
+
+</body>
+</html>
