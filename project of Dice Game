@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <link rel="stylesheet" href="new.css">
+   <script src="new.js" defer></script>
+
+<style>
+*{
+    padding: 0;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+}
+html,body{
+    background-image: linear-gradient(to top left, #753682 0%, #bf2334 100%);
+    width: 100%;
+    height: 100%;
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+    padding: 20px;
+    position: relative;
+}
+main{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 20px;
+
+}
+.player{
+    width: 70%;
+    height: 70%;
+    background-color: #cdc0c0;
+    border-radius: px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    padding: 20px;
+}
+.player--active{
+    background-color: rgb(128, 115, 115);
+    transition: ease-out 1s;
+}
+.random{
+    width: 80px;
+    height: 80px;
+    background-color: rgb(75, 51, 51);
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%,50%);
+    border-radius: 50%;
+    color: white;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 50px;
+}
+.hidden{
+    display: none;
+}
+.current{
+    width: 30%;
+    height: 30%;
+    background-color: #a65959;
+   font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+    padding-top:20px;
+    border-radius: 10px;
+
+
+}
+ .current-score{
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+    padding-top: 15px;
+
+}
+.score{
+    font-size: 50px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 30px; 
+    color:red;
+}
+.btn-container{
+    position: absolute;
+    top: 71%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.btn{
+    width: 100px;
+    height: 50px;
+    background-color: #2e1515;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    border: none;
+    color: white;
+    cursor: pointer;
+    transition: ease 0.2s;
+    margin: 10px;
+}
+.btn:hover{
+    background-color: #8b4545;
+    transform: scale(1.1);
+ }
+  .player--winner{
+        background-color: #120202;
+        color: white;
+        
+    }
+.btn-reset{
+    position: absolute;
+    top: 16%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #2e1515;
+    color: white;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 13px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: ease 0.2s;
+}
+</style>
+</head>
+<body>
+<main>
+   <div class="random"></div>
+   <section class="player player--0 player--active">
+      <h2 class="name" id="name--0">Player 1</h2>
+      <p class="score" id="score--0">43</p>
+      <div class="current">
+
+         <p class="current-label">Current</p>
+         <p class="current-score" id="current--0">0</p>
+
+      </div>
+   </section>
+   <section class="player player--1">
+      <h2 class="name" id="name--1">Player 2</h2>
+      <p class="score" id="score--1">24</p>
+      <div class="current">
+         <p class="current-label">Current</p>
+         <p class="current-score" id="current--1">0</p>
+         </div>
+         </section>
+
+</main>
+<div class="btn-container">
+   <button class="roll btn">Roll Dice</button>
+   <button class="hold btn">Hold</button>
+</div>
+<div class="btn-reset" > Resset</div>
+
+<script>
+  'use strict';
+const score0El = document.getElementById('score--0');
+const score1El = document.getElementById('score--1');
+const randomNum = document.querySelector('.random');
+const rollDice = document.querySelector('.roll');
+const player0= document.querySelector('.player--0');
+const player1= document.querySelector('.player--1');
+const hold = document.querySelector('.hold');
+const reset = document.querySelector('.btn-reset');
+
+let scores = [0,0];
+let currentScore = 0;
+let activePlayer = 0;
+let playing = true;
+
+score0El.textContent= 0;
+score1El.textContent= 0;
+randomNum.classList.add('hidden');
+
+rollDice.addEventListener('click', function(){
+  if(playing){
+  const dice = Math.floor(Math.random() * 6) + 1;
+  randomNum.classList.remove('hidden');
+  randomNum.textContent = dice;
+  if(dice!== 1){
+     currentScore+=dice;
+     document.querySelector(`#current--${activePlayer}`).textContent = currentScore;
+    }else{
+      currentScore = 0;
+      document.querySelector(`#current--${activePlayer}`).textContent = currentScore;
+      activePlayer = activePlayer === 0 ? 1 : 0;
+      // if(activePlayer == 0){
+      //   activePlayer = 1;
+      // }else{
+      //   activePlayer = 0;
+      // }
+      player0.classList.toggle('player--active');
+      player1.classList.toggle('player--active');
+    }
+  }
+});
+hold.addEventListener('click', function(){
+  if(playing){
+  scores[activePlayer] += currentScore;
+  document.querySelector(`#score--${activePlayer}`).textContent = scores[activePlayer];
+
+  if(scores[activePlayer] >= 20){
+    playing = false;
+    randomNum.classList.add('hidden');
+    document.querySelector(`.player--${activePlayer}`).classList.add('player--winner');
+    document.querySelector(`.player--${activePlayer}`).classList.remove('player--active');
+  }
+  currentScore = 0;
+  document.querySelector(`#current--${activePlayer}`).textContent = currentScore;
+  activePlayer = activePlayer === 0 ? 1 : 0;
+  player0.classList.toggle('player--active');
+  player1.classList.toggle('player--active');
+  
+  }
+  });
+  reset.addEventListener('click',function(){
+    scores = [0,0];
+    currentScore = 0;
+    activePlayer = 0;
+    player0.classList.remove('player--winner');
+    player1.classList.remove('player--winner');
+    player0.classList.remove('player--active');
+    player1.classList.remove('player--active');
+    document.querySelector(`#score--0`).textContent = '0';
+    document.querySelector(`#score--1`).textContent = '0';
+    document.querySelector(`#current--0`).textContent = '0';
+    document.querySelector(`#current--1`).textContent = '0';
+    playing = true;
+    randomNum.classList.add('hidden');
+
+  })
+
+</script>
+</body>
+</html>
